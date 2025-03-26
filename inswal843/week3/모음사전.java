@@ -7,7 +7,7 @@ public class Solution {
      * 아닌경우 알파벳 순서에 맞게 계속 dfs수행
      * 
      * 답을 찾은 경우를 저장해 탐색이 필요 없어진 경우 return하여
-     * 시간 복잡도의 개선을 시도해봤다.
+     * 시간 복잡도의 개선을 시도해봄 (빅오 관점에서는 의미가 없긴 하지만...)
      */
     private String[] alpha = {"A", "E", "I", "O", "U"};
     private int cnt = 0;
