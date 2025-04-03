@@ -14,9 +14,7 @@ public class 게임_맵_최단거리 {
     public int bfs(int[][] maps, int n, int m) {
         int[] dx = {0, 0, -1, 1};
         int[] dy = {-1, 1, 0, 0};
-        boolean[][] visit;
-
-        visit = new boolean[n][m];
+        boolean[][] visit = new boolean[n][m];
         Queue<Integer> q = new LinkedList<>();
 
         visit[0][0] = true;
