@@ -1,35 +1,26 @@
 import java.util.*;
 class Solution {
     
-    public List<Integer> compareString(String temp, String[] words) {
+    public List<Integer> isConvertableIndex(String temp, String[] words) {
         
         List<Integer> idx = new ArrayList<>();
-        List<String> a = new ArrayList<>();
-        List<String> b = new ArrayList<>();
+        int isDifferent = 0;
         
-        int n = temp.length();
+        char[] tempToChar = temp.toCharArray();
+        char[] wordToChar;
         
-        for(int i=0;i<words.length;i++){
-            a.clear();
-            b.clear();
-            // 기준 문자열 
-            for(String s : temp.split("")){
-                a.add(s);
+        for(int i = 0;i<words.length;i++){
+            wordToChar = words[i].toCharArray();
+            isDifferent = 0;
+            for(int j = 0;j< temp.length();j++){
+                if(tempToChar[j] != wordToChar[j]){
+                    isDifferent++;
+                }
             }
-            // 비교대상 문자열
-            for(String s:words[i].split("")){
-                b.add(s);
-            }
-            // 기준 문자열 - 비교대상 문자열
-            for(String s: b){
-                a.remove(s);
-            }
-            // 다른 게 한 개일 때
-            if(a.size()==1) {
+            if(isDifferent == 1) {
                 idx.add(i);
             }
         }
-        
         
         return idx;
     }
@@ -52,22 +43,21 @@ class Solution {
                 return stage;
             }
             
-            // 문자 비교 -> 하나만 바꾸면 되는 걸로 (다른 게 하나인 걸로 큐에 넣는다.)
-            // 다른 게 하나인 걸.... 어떻게 구현하면 좋을까..
-            idx = compareString(temp, words);
+            idx = isConvertableIndex(temp, words);
             
             if(idx.size()==0){
                 return count;
             }
             
             for(int i=0;i<idx.size();i++){
+                
                 if(visited[idx.get(i)] == 0){
-                    System.out.println(words[idx.get(i)]);
                     visited[idx.get(i)] = stage + 1;
-                    System.out.println(visited[idx.get(i)]);
+                    
                     path.offer(words[idx.get(i)]);
                     path.offer(Integer.toString(stage+1));
                 }
+                
             }
         }
         
